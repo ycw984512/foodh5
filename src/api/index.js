@@ -2,7 +2,7 @@ import ajax from './ajax'
 
 // 1. 基础路径
 const BASE_URL = '/api';     //在proxy配置了跨域 /api 取代了前面的跨域地址
-// const BASE_URL = 'http://localhost:3000';
+// const BASE_URL = 'http://localhost:3000'; //上线前改为真实路径
 
 // 2. 请求方法
 
