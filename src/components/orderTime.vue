@@ -7,7 +7,7 @@
       <van-radio name="2">预约晚餐 <span v-if="type==2" style="color:red">(已满)</span> </van-radio>
     </van-radio-group>
 
-    <div class="submit">确定</div>
+    <div class="submit" @click="goOrderResult">确定</div>
   </div>
 </template>
 <script>
@@ -41,7 +41,11 @@ export default {
     }
   },
   watch: {},
-  methods: {}
+  methods: {
+    goOrderResult(){
+      this.$router.push('/orderResult')
+    }
+  }
 };
 </script>
 <style scoped>

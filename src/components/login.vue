@@ -10,16 +10,15 @@
       <van-field v-model="password" type="password" label="密码 ：" placeholder="请输入密码" required />
     </van-cell-group>
 
-    <div class="submit">
-        点击登录
-    </div>
+    <div class="submit" @click="login">点击登录</div>
   </div>
 </template>
-<script>
+<script> 
 import { Field } from "vant";
 import { Cell, CellGroup } from "vant";
 import { Uploader } from "vant";
 import { Button } from "vant";
+import { login } from "./../api/index.js";
 export default {
   data() {
     return {
@@ -28,7 +27,9 @@ export default {
       fileList: []
     };
   },
-  mounted() {},
+  mounted() {
+    console.log(this.$route.query.fullPath || "/mine")
+  },
   components: {
     vanCellGroup: CellGroup,
     vanCell: Cell,
@@ -38,20 +39,33 @@ export default {
   },
   computed: {},
   watch: {},
-  methods: {}
+  methods: {
+    async login() {
+      console.log(1);
+      const res = await login(this.phone, this.password);
+      if (res.code == 0) {
+        var token = res.data.token;
+        this.$store.commit("setToken", token); //同步存储token到store中
+        localStorage.setItem("token", token); //本地存储token
+        var fullPath = this.$route.query.fullPath || "/mine";
+        // this.$router.replace('/mine');
+        this.$router.replace(fullPath);
+      }
+    }
+  }
 };
 </script>
 <style scoped>
-.submit{
-    width: 1.3rem;
-    height: 0.5rem;
-    line-height: 0.5rem;
-    text-align: center;
-    background: #1b82d1;
-    border-radius: 0.1rem;
-    color: #fff;  
-    margin: 0.8rem auto;  
-    font-size: 0.16rem;
+.submit {
+  width: 1.3rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  text-align: center;
+  background: #1b82d1;
+  border-radius: 0.1rem;
+  color: #fff;
+  margin: 0.8rem auto;
+  font-size: 0.16rem;
 }
 .van-button {
   border-radius: 50%;
@@ -73,6 +87,4 @@ export default {
   margin: 0.5rem auto;
   margin-left: 1.5rem;
 }
-
-
 </style>

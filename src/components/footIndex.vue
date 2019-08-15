@@ -17,15 +17,16 @@
   </div>
 </template>
 <script>
-
 import { NavBar } from "vant";
 import { mapState } from "vuex";
 import { Swipe, SwipeItem } from "vant";
+
+import Toast from "e:/杨超文/我的一些东西/微信小程序/myLife/miniprogram_npm/vant-weapp/toast/toast";
 export default {
   data() {
     return {
       imgs: [
-        "https://image.zbcdb.com/20190726/0066b84f64daa17c6a14960223765266.png",
+        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1565407765845&di=f472a6442aba46959fb68a33baccc8b4&imgtype=0&src=http%3A%2F%2Fpic3.16pic.com%2F00%2F55%2F42%2F16pic_5542988_b.jpg",
         "https://image.zbcdb.com/20190726/cff8bed01b7e154d33032f3cb7b43b14.png",
         "https://image.zbcdb.com/20190726/214eaed4254b01531df67652b1087bc2.png"
       ],
@@ -54,30 +55,74 @@ export default {
     };
   },
   mounted() {
-
-    console.log(this.homecasual);
+    // console.log(this.homecasual);
   },
   components: {
     NavBar: NavBar,
     vanSwipe: Swipe,
-    vanSwipeItem: SwipeItem
+    vanSwipeItem: SwipeItem,
+
   },
   computed: {
-    ...mapState(["homecasual"])
+    ...mapState(["homecasual"]),
     // homecasual(){
     //   return this.$store.state.homecasual
-    // }
+    // },
+    geTime() {
+      var nowDate = new Date();
+      var times = Number(nowDate.getTime()); //当前时间毫秒数
+      var nowDate = new Date(times);
+      var year = nowDate.getFullYear(); //当前年份
+      var month = nowDate.getMonth() + 1; //当前月份
+      var date = nowDate.getDate(); //当前几号
+      var hours = nowDate.getHours(); //当前几小时
+      var minutes = nowDate.getMinutes(); //当前几分钟
+      var seconds = nowDate.getSeconds(); //当前几秒钟
+      var milliseconds = nowDate.getMilliseconds(); //当前几毫秒
+
+      month = month > 9 ? month : "0" + month; //小于9的话前面加个0
+      date = date > 9 ? date : "0" + date; //小于9的话前面加个0
+      hours = hours > 9 ? hours : "0" + hours; //小于9的话前面加个0
+      minutes = minutes > 9 ? minutes : "0" + minutes; //小于9的话前面加个0
+      seconds = seconds > 9 ? seconds : "0" + seconds; //小于9的话前面加个0
+      //  return year+'-'+month+'-'+date+" "+hours+":"+minutes+":"+seconds+" "+milliseconds;
+      return year + "/" + month + "/" + date;
+    },
+
+    getHours() {
+      var nowDate = new Date();
+      var hours = nowDate.getHours(); //当前几小时
+      hours = hours > 9 ? hours : "0" + hours; //小于9的话前面加个0
+      if (hours >= 12 && hours <= 14) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
   watch: {},
   methods: {
     goPage(item) {
-      this.$router.push("" + item.page + "");
+      if (item.page == "/order") {
+        console.log("进预约就餐页面", this.getHours);
+        if (this.getHours) {
+          this.$router.push("/order");
+        } else {
+          this.$toast.fail({
+            message: "12:00-14:00才进行开放",
+            duration: 1000,
+          forbidClick: true, // 禁用背景点击
+
+          });
+        }
+      } else {
+        this.$router.push("" + item.page + "");
+      }
     }
   }
 };
 </script>
 <style scoped>
-
 .van-nav-bar__title {
   font-weight: 700;
   font-size: 0.2rem;
@@ -108,5 +153,11 @@ export default {
 }
 .opera-item div {
   font-size: 0.16rem;
+}
+.van-swipe {
+  height: 1.75rem;
+}
+.van-swipe img {
+  height: 1.75rem;
 }
 </style>

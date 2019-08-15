@@ -16,7 +16,7 @@ import { NavBar } from "vant";
 export default {
   data() {
     return {
-       mineList: [
+       mineList: [  
         {
           icon: "/static/images/3.png",
           title: "我的预约",

@@ -96,7 +96,7 @@ export default {
           return prev && curr.checked;
         }, true);
       },
-      	//1/监视：当属性值变化时调用该回调函数        2/根据最新的属性值计算相关数据   newValue是最新的allSelected的值
+      //1/监视：当属性值变化时调用该回调函数        2/根据最新的属性值计算相关数据   newValue是最新的allSelected的值
       set: function(newValue) {
         this.rows.forEach(function(item) {
           item.checked = newValue;
@@ -109,7 +109,7 @@ export default {
 
 <style>
 table.table {
-  margin: 0 auto; 
+  margin: 0 auto;
   empty-cells: show;
   border-collapse: collapse;
   width: 100%;
@@ -144,7 +144,7 @@ table.table {
 .tdClass {
   text-align: center;
 }
-.bot{
+.bot {
   position: fixed;
   height: 0.6rem;
   border-top: 0.01rem solid #ccc;
@@ -153,40 +153,35 @@ table.table {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
-.bot .bot_left{
+.bot .bot_left {
   margin-left: 0.2rem;
 }
-.bot .bot_left input[type="checkbox"]{
+.bot .bot_left input[type="checkbox"] {
   position: relative;
   top: 0.03rem;
   width: 0.18rem;
   height: 0.18rem;
 }
-.bot .bot_left span{
+.bot .bot_left span {
   margin-left: 0.06rem;
-
 }
-.bot .bot_right{
-   margin-right: 0.2rem;
-   display: flex;
-   
+.bot .bot_right {
+  margin-right: 0.2rem;
+  display: flex;
 }
-.bot .bot_right div:first-child{
-    margin-right: 0.1rem;
-    padding: 0.1rem;
-    background: #1b82d1;
-    color: #fff;
-    border-radius: 0.1rem
+.bot .bot_right div:first-child {
+  margin-right: 0.1rem;
+  padding: 0.1rem;
+  background: #1b82d1;
+  color: #fff;
+  border-radius: 0.1rem;
 }
-.bot .bot_right div:nth-child(2){
-      margin-right: 0.1rem;
-    padding: 0.1rem;
-    background: #e01b1b;
-    color: #fff;
-    border-radius: 0.1rem
+.bot .bot_right div:nth-child(2) {
+  margin-right: 0.1rem;
+  padding: 0.1rem;
+  background: #e01b1b;
+  color: #fff;
+  border-radius: 0.1rem;
 }
-
-
 </style>

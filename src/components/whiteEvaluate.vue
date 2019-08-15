@@ -3,7 +3,7 @@
     <div class="wrap_title">服务质量</div>
     <van-rate v-model="value" :count="5" :size="30" :gutter="30" />
     <van-field v-model="message" type="textarea" placeholder="请输入" rows="5" autosize />
-     <div class="submit">确定提交 </div>   
+    <div class="submit">确定提交</div>
   </div>
 </template>
 <script>
@@ -27,25 +27,24 @@ export default {
 };
 </script>
 <style scoped>
-.wrap_title {
+.wrap_title { 
   margin: 0.2rem 0 0.2rem 0.2rem;
   font-size: 0.14rem;
 }
 .van-rate {
   padding: 0 0.5rem;
 }
-.submit{
-    width: 1.3rem;
-    height: 0.5rem;
-    line-height: 0.5rem;
-    text-align: center;
-    background: #1b82d1;
-    border-radius: 0.1rem;
-    color: #fff;  
-    margin: 0.8rem auto;  
-    font-size: 0.16rem;
+.submit {
+  width: 1.3rem;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  text-align: center;
+  background: #1b82d1;
+  border-radius: 0.1rem;
+  color: #fff;
+  margin: 0.8rem auto;
+  font-size: 0.16rem;
 }
-
 </style>
 <style>
 textarea {
@@ -59,7 +58,7 @@ textarea {
   width: 88% !important;
   margin-right: 0 !important;
   margin-left: 0.2rem !important;
-    margin-top: 0.2rem !important;
+  margin-top: 0.2rem !important;
 }
 
 textarea::-webkit-input-placeholder {

@@ -8,7 +8,7 @@
       </van-swipe-item>
       <div class="custom-indicator" slot="indicator">{{ current + 1 }}/4</div>
     </van-swipe>
-    <van-button type="default" class="btn">立即就餐</van-button>
+    <van-button type="default" class="btn" @click="goFood">立即就餐</van-button>
     <div class="border_wrap">
       <div class="border_left"></div>
       <div class="middle">{{current+1}}/{{imgs.length}}</div>
@@ -50,16 +50,49 @@ export default {
     vanButton: Button
   },
   computed: {
-    ...mapState(["homecasual"])
+    ...mapState(["homecasual"]),
     // homecasual(){
     //   return this.$store.state.homecasual
     // }
+    getHours() {
+      var nowDate = new Date();
+      var hours = nowDate.getHours(); //当前几小时
+      hours = hours > 9 ? hours : "0" + hours; //小于9的话前面加个0
+      if (hours >= 12 && hours <= 14) {
+        return true;
+      } else if (hours >= 18 && hours <= 20) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   },
   watch: {},
   methods: {
     onChange(index) {
       console.log("当前 Swipe 索引：" + index);
       this.current = index;
+    },
+    goFood() {
+      if (!this.$store.state.token) {
+        this.$router.push({
+          path: "/login",
+          query: {
+            fullPath: "/foodSearch"
+          }
+        });
+      } else {
+        if (this.getHours) {
+          this.$router.push("/goFood");
+        } else {
+          this.$toast({
+            message: "12:00-14:00或者18:00-20:00才进行开放",
+            duration: 1000,
+            forbidClick: true, // 禁用背景点击
+            icon: "cross"
+          });
+        }
+      }
     }
   }
 };

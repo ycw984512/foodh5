@@ -1,30 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import footIndex from '@/components/footIndex'
-import mine from '@/components/mine'
-import foodSearch from '@/components/foodSearch'
-import order from '@/components/order'
-import specialOrder from '@/components/specialOrder'
-import myOrder from '@/components/myOrder'
-import login from '@/components/login'
-import about from '@/components/about'
-import evaluate from '@/components/evaluate'
-import whiteEvaluate from '@/components/whiteEvaluate'
-import orderSuccess from '@/components/orderSuccess'
-import orderFail from '@/components/orderFail'
-import responsibility from '@/components/responsibility'
-import orderTime from '@/components/orderTime'
-import orderResult from '@/components/orderResult'
-import specialTime from '@/components/specialTime'
-import specialResult from '@/components/specialResult'
-import orderDetail from '@/components/orderDetail'
-import adminApproval from '@/components/adminApproval'
-import adminIndex from '@/components/adminIndex'
-import adminFoodSearch from '@/components/adminFoodSearch'
-
-import adminEvaluate from '@/components/adminEvaluate'
-import adminCommonOrder from '@/components/adminCommonOrder'
-import adminMine from '@/components/adminMine'
 
 
 Vue.use(Router)
@@ -33,37 +8,54 @@ export default new Router({
   mode:"history",
   routes: [
     {
+      path: '*', 
+      redirect:'/'
+    },
+    {
       path: '/',
       name: 'footIndex',
-      component: footIndex,
+      component: resolve => require(['@/components/footIndex'], resolve),
       meta: {
         title: "首页",    
-        show: true               
+        show: true ,
+        allow: true,              
     }
   
     },
     {
       path: '/mine',
       name: 'mine',
-      component: mine,
+      component: resolve => require(['@/components/mine'], resolve),
       meta:{
         title: "我的",    
-        show: true               
+        show: true  ,
+        allow: true,                     
     }
     },
     {
       path: '/foodSearch',
       name: 'foodSearch',
-      component: foodSearch,
+      component: resolve => require(['@/components/foodSearch'], resolve),
       meta:{
         title: "供餐查询",    
-        show: false               
+        show: false  ,
+        allow: true,                     
+    }
+    },
+    {
+      path: '/goFood',
+      name: 'goFood',
+      component: resolve => require(['@/components/goFood'], resolve),
+      meta:{
+        title: "立即就餐",    
+        show: false   ,
+         
     }
     },
     {
       path: '/order',
       name: 'order',
-      component: order,
+      component: resolve => require(['@/components/order'], resolve),
       meta:{
         title: "预约",    
         show: false               
@@ -72,7 +64,7 @@ export default new Router({
     {
       path: '/specialOrder',
       name: 'specialOrder',
-      component: specialOrder,
+      component: resolve => require(['@/components/specialOrder'], resolve),
       meta:{
         title: "特殊预约",    
         show: false               
@@ -81,7 +73,7 @@ export default new Router({
     {
       path: '/myOrder',
       name: 'myOrder',
-      component: myOrder,
+      component: resolve => require(['@/components/myOrder'], resolve),
       meta:{
         title: "我的预约",    
         show: false               
@@ -90,7 +82,7 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: login,
+      component: resolve => require(['@/components/login'], resolve),
       meta:{
         title: "登录",    
         show: false               
@@ -99,16 +91,17 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      component: about,
+      component: resolve => require(['@/components/about'], resolve),
       meta:{
         title: "关于",    
-        show: false               
+        show: false ,
+        allow: true,                       
     }
     },
     {
       path: '/evaluate',
       name: 'evaluate',
-      component: evaluate,
+      component: resolve => require(['@/components/evaluate'], resolve),
       meta:{
         title: "我的评价",    
         show: false               
@@ -117,7 +110,7 @@ export default new Router({
     {
       path: '/whiteEvaluate',
       name: 'whiteEvaluate',
-      component: whiteEvaluate,
+      component: resolve => require(['@/components/whiteEvaluate'], resolve),
       meta:{
         title: "填写评价",    
         show: false               
@@ -126,7 +119,7 @@ export default new Router({
     {
       path: '/orderSuccess',
       name: 'orderSuccess',
-      component: orderSuccess,
+      component: resolve => require(['@/components/orderSuccess'], resolve),
       meta:{
         title: "就餐结果",    
         show: false               
@@ -135,7 +128,7 @@ export default new Router({
     {
       path: '/orderFail',
       name: 'orderFail',
-      component: orderFail,
+      component: resolve => require(['@/components/orderFail'], resolve),
       meta:{
         title: "就餐结果",    
         show: false               
@@ -144,7 +137,7 @@ export default new Router({
     {
       path: '/responsibility',
       name: 'responsibility',
-      component: responsibility,
+      component: resolve => require(['@/components/responsibility'], resolve),
       meta:{
         title: "违约责任",    
         show: false               
@@ -153,7 +146,7 @@ export default new Router({
     {
       path: '/orderTime',
       name: 'orderTime',
-      component: orderTime,
+      component: resolve => require(['@/components/orderTime'], resolve),
       meta:{
         title: "预约时间",    
         show: false               
@@ -162,7 +155,7 @@ export default new Router({
     {
       path: '/orderResult',
       name: 'orderResult',
-      component: orderResult,
+      component: resolve => require(['@/components/orderResult'], resolve),
       meta:{
         title: "预约结果",    
         show: false               
@@ -171,7 +164,7 @@ export default new Router({
     {
       path: '/specialTime',
       name: 'specialTime',
-      component: specialTime,
+      component: resolve => require(['@/components/specialTime'], resolve),
       meta:{
         title: "特殊预约",    
         show: false               
@@ -180,7 +173,7 @@ export default new Router({
     {
       path: '/specialResult',
       name: 'specialResult',
-      component: specialResult,
+      component: resolve => require(['@/components/specialResult'], resolve),
       meta:{
         title: "预约结果",    
         show: false               
@@ -189,7 +182,7 @@ export default new Router({
     {
       path: '/orderDetail',
       name: 'orderDetail',
-      component: orderDetail,
+      component: resolve => require(['@/components/orderDetail'], resolve),
       meta:{
         title: "预约详情",    
         show: false               
@@ -198,7 +191,7 @@ export default new Router({
     {
       path: '/adminApproval',
       name: 'adminApproval',
-      component: adminApproval,
+      component: resolve => require(['@/components/adminApproval'], resolve),
       meta:{
         title: "预约审核",    
         show: false               
@@ -207,7 +200,7 @@ export default new Router({
     {
       path: '/adminIndex',
       name: 'adminIndex',
-      component: adminIndex,
+      component: resolve => require(['@/components/adminIndex'], resolve),
       meta:{
         title: "首页",    
         show: false               
@@ -216,7 +209,7 @@ export default new Router({
     {
       path: '/adminFoodSearch',
       name: 'adminFoodSearch',
-      component: adminFoodSearch,
+      component: resolve => require(['@/components/adminFoodSearch'], resolve),
       meta:{
         title: "供餐查询",    
         show: false               
@@ -225,7 +218,7 @@ export default new Router({
     {
       path: '/adminEvaluate',
       name: 'adminEvaluate',
-      component: adminEvaluate,
+      component: resolve => require(['@/components/adminEvaluate'], resolve),
       meta:{
         title: "用户评价",    
         show: false               
@@ -234,7 +227,7 @@ export default new Router({
     {
       path: '/adminCommonOrder',
       name: 'adminCommonOrder',
-      component: adminCommonOrder,
+      component: resolve => require(['@/components/adminCommonOrder'], resolve),
       meta:{
         title: "普通预约",    
         show: false               
@@ -243,7 +236,7 @@ export default new Router({
     {
       path: '/adminMine',
       name: 'adminMine',
-      component: adminMine,
+      component: resolve => require(['@/components/adminMine'], resolve),
       meta:{
         title: "我的",    
         show: false               
